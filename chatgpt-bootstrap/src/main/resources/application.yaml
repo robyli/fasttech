@@ -2,4 +2,4 @@ server:
   port: 9989
 spring:
   profiles:
-    active: dev
+    active: prod

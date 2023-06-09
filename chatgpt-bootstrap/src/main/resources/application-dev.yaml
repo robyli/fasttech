@@ -37,9 +37,9 @@ chat:
   # 管理端账号
   admin_account: ${CHAT_ADMIN_ACCOUNT:admin}
   # 管理端密码
-  admin_password: ${CHAT_ADMIN_PASSWORD:admin}
+  admin_password: ${CHAT_ADMIN_PASSWORD:ai-admin-521A.}
   # 全局时间内最大请求次数
-  maxRequest: ${CHAT_MAX_REQUEST:}
+  maxRequest: ${CHAT_MAX_REQUEST:20}
   # 全局最大请求时间间隔（秒）
   maxRequestSecond: ${CHAT_MAX_REQUEST_SECOND:}
   # ip 时间内最大请求次数
@@ -47,7 +47,7 @@ chat:
   # ip 最大请求时间间隔（秒）
   ipMaxRequestSecond: ${CHAT_IP_MAX_REQUEST_SECOND:}
   # 限制上下文对话的数量
-  limitQuestionContextCount: ${CHAT_LIMIT_QUESTION_CONTEXT_COUNT:}
+  limitQuestionContextCount: ${CHAT_LIMIT_QUESTION_CONTEXT_COUNT:50}
 
 # 邮箱验证相关
 email:

@@ -2,9 +2,16 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USER_NAME:root}
-    password: ${MYSQL_PASSWORD:123456}
-    url: ${JDBC_URL:jdbc:mysql://localhost:3309/chat?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true}
-
+    password: ${MYSQL_PASSWORD:fastdb123A.}
+    url: ${JDBC_URL:jdbc:mysql://47.98.20.206:3306/fastmind?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true}
+    hikari:
+      connection-timeout: 60000   # 数据库连接超时时间,默认30秒,即30000
+      validation-timeout: 3000    # 指定验证连接有效性的超时时间(默认是5秒,最小不能小于250毫秒)
+      idle-timeout: 60000         # 空闲连接超时时间,一个连接idle状态的最大时长（毫秒）,超时则被释放（retired）,默认是10分钟,只有空闲连接数大于最大连接数且空闲时间超过该值,才会被释放
+      login-timeout: 5            # 指定连接数据库的超时时间,单位:秒
+      max-lifetime: 70000         # 指定连接池中连接的最大生存时间,单位:毫秒.默认是1800000,即30分钟
+      maximum-pool-size: 30       # 指定连接池最大的连接数,包括使用中的和空闲的连接,默认值10
+      minimum-idle: 10            # 指定连接维护的最小空闲连接数,当使用HikariCP时指定
 #mybatis-plus:
 #  configuration:
 #    # 控制台打印 SQL
@@ -12,7 +19,7 @@ spring:
 
 chat:
   # OpenAI API Key - https://platform.openai.com/account/api-keys
-  openai_api_key: ${CHAT_OPENAI_API_KEY:}
+  openai_api_key: ${CHAT_OPENAI_API_KEY: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}
   # change this to an `accessToken` extracted from the ChatGPT site's `https://chat.openai.com/api/auth/session` response
   openai_access_token: ${CHAT_OPENAI_ACCESS_TOKEN:}
   # OpenAI API Base URL - https://api.openai.com/，要加/后缀
@@ -30,9 +37,9 @@ chat:
   # 管理端账号
   admin_account: ${CHAT_ADMIN_ACCOUNT:admin}
   # 管理端密码
-  admin_password: ${CHAT_ADMIN_PASSWORD:admin}
+  admin_password: ${CHAT_ADMIN_PASSWORD:ai-admin-521A.}
   # 全局时间内最大请求次数
-  maxRequest: ${CHAT_MAX_REQUEST:}
+  maxRequest: ${CHAT_MAX_REQUEST:20}
   # 全局最大请求时间间隔（秒）
   maxRequestSecond: ${CHAT_MAX_REQUEST_SECOND:}
   # ip 时间内最大请求次数
@@ -40,7 +47,7 @@ chat:
   # ip 最大请求时间间隔（秒）
   ipMaxRequestSecond: ${CHAT_IP_MAX_REQUEST_SECOND:}
   # 限制上下文对话的数量
-  limitQuestionContextCount: ${CHAT_LIMIT_QUESTION_CONTEXT_COUNT:}
+  limitQuestionContextCount: ${CHAT_LIMIT_QUESTION_CONTEXT_COUNT:50}
 
 # 邮箱验证相关
 email:
