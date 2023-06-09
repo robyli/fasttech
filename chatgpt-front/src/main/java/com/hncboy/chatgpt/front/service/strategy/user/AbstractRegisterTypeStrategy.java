@@ -55,11 +55,18 @@ public abstract class AbstractRegisterTypeStrategy {
     public abstract boolean identityUsed(String identity);
 
     /**
-     * 执行注册逻辑
+     * 执行注册逻辑-免邮箱验证
      *
      * @param request 注册请求
      */
     public abstract void register(RegisterFrontUserForEmailRequest request);
+
+    /**
+     * 执行注册逻辑-需要邮箱验证
+     *
+     * @param request 注册请求
+     */
+    public abstract void registerWithVerify(RegisterFrontUserForEmailRequest request);
 
     /**
      * 校验验证码是否通过

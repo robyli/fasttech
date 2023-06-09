@@ -98,14 +98,52 @@ public class EmailAbstractRegisterStrategy extends AbstractRegisterTypeStrategy 
                     .password(this.encryptRawPassword(request.getPassword(), salt))
                     .salt(salt)
                     .username(request.getIdentity())
-                    .verified(true)// 默认校验，不进行
+                    .verified(false)
                     .build();
             // 存储邮箱信息
             userExtraEmailService.save(existsEmailDO);
         } else {
             // 在未使用的邮箱基础上更新下密码信息，然后重新投入使用
             existsEmailDO.setSalt(salt);
-            existsEmailDO.setVerified(true);// 默认校验
+            existsEmailDO.setVerified(false);
+            existsEmailDO.setPassword(this.encryptRawPassword(request.getPassword(), salt));
+            // 存储邮箱信息
+            userExtraEmailService.updateById(existsEmailDO);
+        }
+        // 存储验证码记录
+        EmailVerifyCodeDO emailVerifyCodeDO = emailVerifyCodeService.createVerifyCode(EmailBizTypeEnum.REGISTER_VERIFY, request.getIdentity());
+
+        // TODO 根据 ip 进行限流
+
+        // 自动验证
+        FrontUserBaseDO baseUser = baseUserService.createEmptyBaseUser();
+        bindingService.bindEmail(baseUser, existsEmailDO);
+        emailVerifyCodeService.verifySuccess(emailVerifyCodeDO);
+        userExtraEmailService.verifySuccess(existsEmailDO);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void registerWithVerify(RegisterFrontUserForEmailRequest request) {
+        // 注册前会校验账号信息，到注册时能确保账号都是可以注册的
+
+        // 查找邮箱账号是否存在
+        FrontUserExtraEmailDO existsEmailDO = userExtraEmailService.getUnverifiedEmailAccount(request.getIdentity());
+        String salt = RandomUtil.randomString(6);
+        // 构建新的邮箱信息
+        if (Objects.isNull(existsEmailDO)) {
+            existsEmailDO = FrontUserExtraEmailDO.builder()
+                    .password(this.encryptRawPassword(request.getPassword(), salt))
+                    .salt(salt)
+                    .username(request.getIdentity())
+                    .verified(false)
+                    .build();
+            // 存储邮箱信息
+            userExtraEmailService.save(existsEmailDO);
+        } else {
+            // 在未使用的邮箱基础上更新下密码信息，然后重新投入使用
+            existsEmailDO.setSalt(salt);
+            existsEmailDO.setVerified(false);// 默认校验
             existsEmailDO.setPassword(this.encryptRawPassword(request.getPassword(), salt));
             // 存储邮箱信息
             userExtraEmailService.updateById(existsEmailDO);
@@ -116,7 +154,7 @@ public class EmailAbstractRegisterStrategy extends AbstractRegisterTypeStrategy 
         // TODO 根据 ip 进行限流
 
         // 发送邮箱验证信息
-        //emailService.sendForVerifyCode(request.getIdentity(), emailVerifyCodeDO.getVerifyCode());// 不验证
+        emailService.sendForVerifyCode(request.getIdentity(), emailVerifyCodeDO.getVerifyCode());
     }
 
     @Override
