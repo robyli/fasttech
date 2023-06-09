@@ -177,6 +177,8 @@ public class EmailAbstractRegisterStrategy extends AbstractRegisterTypeStrategy 
                 .description(baseUser.getDescription())
                 .nickname(baseUser.getNickname())
                 .email(extraEmailDO.getUsername())
+                .balance(baseUser.getBalance())
+                .chatRecordNum(baseUser.getChatRecordNum())
                 .avatarUrl("").build();
     }
 

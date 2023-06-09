@@ -20,10 +20,12 @@ public class FrontUserBaseServiceImpl extends ServiceImpl<FrontUserBaseMapper, F
     @Override
     public FrontUserBaseDO createEmptyBaseUser() {
         FrontUserBaseDO userBaseDO = new FrontUserBaseDO();
-        userBaseDO.setNickname("StarGPT_" + RandomUtil.randomString(6));
+        userBaseDO.setNickname("gpt_" + RandomUtil.randomString(6));
         userBaseDO.setLastLoginIp(null);
         userBaseDO.setDescription(null);
         userBaseDO.setAvatarVersion(0);
+        userBaseDO.setBalance(100);
+        userBaseDO.setChatRecordNum(5);
         this.save(userBaseDO);
         return userBaseDO;
     }

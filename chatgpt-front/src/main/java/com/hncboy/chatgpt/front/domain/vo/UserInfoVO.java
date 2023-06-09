@@ -32,4 +32,10 @@ public class UserInfoVO {
 
     @Schema(title = "头像地址")
     private String avatarUrl;
+
+    @Schema(title = "用户余额")
+    private Integer balance;
+
+    @Schema(title = "可记忆的对话限制")
+    private Integer chatRecordNum;
 }

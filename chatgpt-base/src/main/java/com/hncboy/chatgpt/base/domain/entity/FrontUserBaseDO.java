@@ -61,4 +61,14 @@ public class FrontUserBaseDO {
      */
     @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
+
+    /**
+     * 用户余额
+     */
+    private Integer balance;
+
+    /**
+     * 可记忆的对话限制
+     */
+    private Integer chatRecordNum;
 }
