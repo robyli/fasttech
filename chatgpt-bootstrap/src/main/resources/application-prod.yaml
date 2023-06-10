@@ -1,5 +1,5 @@
 web:
-  upload-path: /Users/lipeng/Documents/code/web/
+  upload-path: /usr/local/miyao/fast/web
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,6 +16,7 @@ spring:
       minimum-idle: 10            # 指定连接维护的最小空闲连接数,当使用HikariCP时指定
   resources:
     static-locations: file:${web.upload-path}
+
 
 #mybatis-plus:
 #  configuration:

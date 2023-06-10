@@ -15,7 +15,7 @@ spring:
       maximum-pool-size: 30       # 指定连接池最大的连接数,包括使用中的和空闲的连接,默认值10
       minimum-idle: 10            # 指定连接维护的最小空闲连接数,当使用HikariCP时指定
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
+    static-locations: file:${web.upload-path}
 #mybatis-plus:
 #  configuration:
 #    # 控制台打印 SQL
