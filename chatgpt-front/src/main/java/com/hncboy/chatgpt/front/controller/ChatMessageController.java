@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 @AllArgsConstructor
 @Tag(name = "聊天相关接口")
 @RestController("FrontChatMessageController")
-@RequestMapping("/chat_message")
+@RequestMapping("/api/chat_message")
 public class ChatMessageController {
 
     private final ChatMessageService chatMessageService;

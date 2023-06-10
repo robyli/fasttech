@@ -22,7 +22,7 @@ import jakarta.annotation.Resource;
  */
 @AllArgsConstructor
 @Tag(name = "管理端-聊天记录相关接口")
-@ApiAdminRestController("/chat_message")
+@ApiAdminRestController("/api/chat_message")
 public class ChatMessageController {
 
     @Resource

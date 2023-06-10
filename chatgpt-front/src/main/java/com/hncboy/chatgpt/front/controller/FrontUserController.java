@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Tag(name = "用户相关接口")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class FrontUserController {
 
     private final FrontUserService frontUserService;
