@@ -2,4 +2,4 @@ server:
   port: 9980
 spring:
   profiles:
-    active: prod
+    active: dev
