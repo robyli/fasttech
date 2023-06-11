@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @AllArgsConstructor
 @Tag(name = "管理端-系统用户相关接口")
-@ApiAdminRestController("/api/sys_user")
+@ApiAdminRestController("/sys_user")
 public class SysUserController {
 
     private final SysUserService sysUserService;

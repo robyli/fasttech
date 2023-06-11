@@ -24,12 +24,12 @@ public class SaTokenConfig implements WebMvcConfigurer {
         // 注册 Sa-Token 拦截器，校验规则为 StpUtil.checkLogin() 登录校验。
         registry.addInterceptor(new SaInterceptor(handle -> {
                     // 管理端接口都必须管理端登录
-                    SaRouter.match("/api/admin/**").check(r -> StpAdminUtil.checkLogin());
+                    SaRouter.match("/admin/**").check(r -> StpAdminUtil.checkLogin());
                     // 非管理端接口都必须 front 用户登录
-                    SaRouter.notMatch("/api/admin/**").check(r -> StpUtil.checkLogin());
+                    SaRouter.notMatch("/admin/**").check(r -> StpUtil.checkLogin());
                 }))
                 // 放行管理端登录接口
-                .excludePathPatterns("/api/admin/sys_user/login")
+                .excludePathPatterns("/admin/sys_user/login")
                 // 放行用户端校验邮箱验证码
                 .excludePathPatterns("/api/user/verify_email_code")
                 // 放行用户端邮箱注册

@@ -18,7 +18,7 @@ import java.util.List;
  */
 @AllArgsConstructor
 @Tag(name = "管理端-限流记录相关接口")
-@ApiAdminRestController("/api/rate_limit")
+@ApiAdminRestController("/rate_limit")
 public class RateLimitController {
 
     private final RateLimitService rateLimitService;

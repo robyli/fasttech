@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @AllArgsConstructor
 @Tag(name = "管理端-敏感词相关接口")
-@ApiAdminRestController("/api/sensitive_word")
+@ApiAdminRestController("/sensitive_word")
 public class SensitiveWordController {
 
     private final SensitiveWordService sensitiveWordService;

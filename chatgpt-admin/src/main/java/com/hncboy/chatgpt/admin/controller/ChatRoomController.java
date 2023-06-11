@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @AllArgsConstructor
 @Tag(name = "管理端-聊天室相关接口")
-@ApiAdminRestController("/api/chat_room")
+@ApiAdminRestController("/chat_room")
 public class ChatRoomController {
 
     private final ChatRoomService chatRoomService;
