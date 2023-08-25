@@ -25,13 +25,13 @@ spring:
 
 chat:
   # OpenAI API Key - https://platform.openai.com/account/api-keys
-  openai_api_key: ${CHAT_OPENAI_API_KEY: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}
+  openai_api_key: ${CHAT_OPENAI_API_KEY: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}
   # change this to an `accessToken` extracted from the ChatGPT site's `https://chat.openai.com/api/auth/session` response
   openai_access_token: ${CHAT_OPENAI_ACCESS_TOKEN:}
   # OpenAI API Base URL - https://api.openai.com/，要加/后缀
   openai_api_base_url: ${CHAT_OPENAI_API_BASE_URL:https://api.openai.com/}
   # API Model - https://platform.openai.com/docs/models apiKey 和 AccessToken mode 不一样
-  openai_api_model: ${CHAT_OPENAI_API_MODEL:}
+  openai_api_model: ${CHAT_OPENAI_API_MODEL:gpt-3.5-turbo-16k}
   # 反向代理地址 AccessToken 时使用
   api_reverse_proxy: ${CHAT_API_REVERSE_PROXY:}
   # 超时毫秒
