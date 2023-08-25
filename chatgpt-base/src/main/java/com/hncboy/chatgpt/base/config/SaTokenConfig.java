@@ -28,6 +28,8 @@ public class SaTokenConfig implements WebMvcConfigurer {
                     // 非管理端接口都必须 front 用户登录
                     SaRouter.notMatch("/admin/**").check(r -> StpUtil.checkLogin());
                 }))
+                // 放行alsc的非流失接口请求
+                .excludePathPatterns("/api/chat_message/query")
                 // 放行管理端登录接口
                 .excludePathPatterns("/admin/sys_user/login")
                 // 放行用户端校验邮箱验证码
@@ -41,6 +43,7 @@ public class SaTokenConfig implements WebMvcConfigurer {
                 // swagger 放行
                 .excludePathPatterns("/swagger-ui/**")
                 .excludePathPatterns("/v3/api-docs/**");
+
     }
 
     @Bean

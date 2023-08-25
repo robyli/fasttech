@@ -1,18 +1,18 @@
 package com.hncboy.chatgpt.front.controller;
 
 import cn.hutool.core.date.DateUtil;
+import com.hncboy.chatgpt.base.handler.response.R;
 import com.hncboy.chatgpt.front.domain.request.ChatProcessRequest;
+import com.hncboy.chatgpt.front.handler.fastai.FastAIChatGPT4Alsc;
 import com.hncboy.chatgpt.front.service.ChatMessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
 /**
@@ -28,6 +28,9 @@ public class ChatMessageController {
 
     private final ChatMessageService chatMessageService;
 
+    @Autowired
+    private FastAIChatGPT4Alsc fastAIChatGPT4Alsc;
+
     @Operation(summary = "发送消息")
     @PostMapping("/send")
     public ResponseBodyEmitter sendMessage(@RequestBody @Validated ChatProcessRequest chatProcessRequest, HttpServletResponse response) {
@@ -35,5 +38,12 @@ public class ChatMessageController {
         chatProcessRequest.setSystemMessage("You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible.");
         response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
         return chatMessageService.sendMessage(chatProcessRequest);
+    }
+
+    @Operation(summary = "非流式发送消息")
+    @RequestMapping(value = "/query", method = {RequestMethod.POST})
+    public R<?> queryGPT(@RequestBody ChatProcessRequest request) {
+        Object resp = fastAIChatGPT4Alsc.chat(request);
+        return  R.data(resp);
     }
 }
