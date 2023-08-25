@@ -23,6 +23,8 @@ public enum ApiKeyTokenLimiterEnum {
      */
     GPT_3_5_TURBO(ChatCompletion.Model.GPT_3_5_TURBO, 4096),
     GPT_3_5_TURBO_0301(ChatCompletion.Model.GPT_3_5_TURBO_0301, 4096),
+    GPT_3_5_TURBO_16K(ChatCompletion.Model.GPT_3_5_TURBO_16K, 4096),
+    GPT_3_5_TURBO_16K_0613(ChatCompletion.Model.GPT_3_5_TURBO_16K_0613, 4096),
 
     /**
      * GPT4 Token 限制文档
